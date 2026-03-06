@@ -16,7 +16,7 @@ const server = http.createServer(app);
 // ─── Socket.io Setup ────────────────────────────────────────────
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: '*',
     methods: ['GET', 'POST'],
   },
 });
@@ -28,7 +28,7 @@ io.use(socketAuthMiddleware);
 callHandler(io);
 
 // ─── Express Middleware ─────────────────────────────────────────
-app.use(cors({ origin: process.env.CLIENT_URL || 'http://localhost:5173' }));
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 // ─── Routes ─────────────────────────────────────────────────────
